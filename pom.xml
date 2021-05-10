@@ -78,7 +78,7 @@
     </pluginManagement>
     <resources>
       <resource>
-        <directory>src/test</directory>
+        <directory>src/test/test-conf</directory>
         <includes>
           <include>**/*.ccf</include>
         </includes>
