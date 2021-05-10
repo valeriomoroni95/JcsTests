@@ -1,0 +1,11 @@
+language: java
+sudo: false
+
+script: mvn test
+
+notifications:
+  slack:
+    on_success: never
+    on_failure: never
+    
+    
