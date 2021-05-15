@@ -31,7 +31,7 @@ public class JCSLightLoadUnitTest
     extends TestCase
 {
 
-    private static int items = 20000;
+    private static int items = 999;
 
     /**
      * Test setup

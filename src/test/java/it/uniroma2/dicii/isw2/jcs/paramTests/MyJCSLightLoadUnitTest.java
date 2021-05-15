@@ -2,11 +2,20 @@ import static org.junit.Assert.*;
 import org.apache.jcs.JCS;
 import org.apache.jcs.access.exception.CacheException;
 import org.junit.Before;
+import org.junit.BeforeClass;
 import org.junit.Test;
+import org.junit.runner.RunWith;
+import org.junit.runners.Parameterized;
+import org.junit.runners.Parameterized.Parameters;
+import java.util.Arrays;
+import java.util.Collection;
 
+
+@RunWith(value = Parameterized.class)
 public class MyJCSLightLoadUnitTest {
 	
 	private int items;
+	private String expected;
 	private JCS jcs;
 	
 	
@@ -15,23 +24,29 @@ public class MyJCSLightLoadUnitTest {
 		configure();
 	}
 	
-	/*public void configure() throws CacheException {
-		this.items = 20000;
-		JCS.setConfigFilename( "/TestSimpleLoad.ccf" );
-        JCS.getInstance( "testCache1" );
-        this.jcs = JCS.getInstance( "testCache1" );
-	}*/
+	public MyJCSLightLoadUnitTest(int items, String expected) {
+		this.items = items;
+		this.expected = expected;
+		
+	}
+	
 	
 	private void configure(){
-		this.items=999;
+	
         JCS.setConfigFilename("/TestSimpleLoad.ccf");
         try {
-        	JCS.getInstance( "testCache1" );
-        	this.jcs = JCS.getInstance( "testCache1" );
+        	jcs = JCS.getInstance( "testCache1" );
         } catch (CacheException e) {
             e.printStackTrace();
         }
     }
+	
+	@Parameters
+	public static Collection<Object[]> getParameters() {
+		return Arrays.asList(new Object[][] {
+			{999, null},
+		});
+	}
 	
 	@Test
 	public void testSimpleLoad()
@@ -41,8 +56,6 @@ public class MyJCSLightLoadUnitTest {
 	        //        ICompositeCacheAttributes cattr = jcs.getCacheAttributes();
 	        //        cattr.setMaxObjects( 20002 );
 	        //        jcs.setCacheAttributes( cattr );
-	        
-	        System.out.println("Running with items: " + items);
 	        
 	        for ( int i = 1; i <= items; i++ )
 	        {
