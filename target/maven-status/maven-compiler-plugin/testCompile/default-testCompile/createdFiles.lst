@@ -1,3 +1,4 @@
 org/apache/jcs/JCSRemovalSimpleConcurrentTest.class
 MyJCSLightLoadUnitTest.class
 org/apache/jcs/JCSLightLoadUnitTest.class
+MyJCSRemovalSimpleConcurrentTest.class
